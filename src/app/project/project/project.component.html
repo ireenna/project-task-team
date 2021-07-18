@@ -1,1 +1,14 @@
-<p>project works!</p>
+<div class="project">
+    <h1 class="project-name">
+        <!-- (click)="bookSelected()" -->
+         {{item?.name}}
+    </h1>
+    <div class="project-info">
+        <h4><strong>Description: </strong>{{item?.description}}</h4>
+        <h4><b>Author: </b> {{item?.author?.firstName}} {{item?.author?.lastName}}</h4>
+        <h4><b>Team: </b> {{item?.team?.name}}</h4>
+        <h4><b style="color:red">Deadline: </b> {{item?.deadline|myDateFormat}}</h4>
+        <h4><b>Created at: </b> {{item?.createdAt| myDateFormat}} </h4>
+        <!-- <h4><b>Tasks: </b> {{item?.team.name}}</h4> -->
+    </div>
+</div>

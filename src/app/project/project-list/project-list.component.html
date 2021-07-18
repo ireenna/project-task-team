@@ -1,1 +1,12 @@
-<p>project-list works!</p>
+<div class="title">
+    {{title}}
+</div>
+
+<div class="project-list">
+    <app-project *ngFor="let project of projectsList; let index = index" [item]="project" [index]='index' >
+        <!-- (itemSelected)="bookSelected($event)" -->
+    </app-project>
+
+    <!--<book-details [item]="book" [(bookTitle)]="book.title" titleColor="red">
+    </book-details>-->
+</div>

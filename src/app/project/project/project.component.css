@@ -1,0 +1,22 @@
+.project{
+    background-color: var(--color);
+    border-radius: 10px;
+    border: 2px solid #30363d;
+    height: auto;
+    padding: 1px 10px ;
+    margin: 10px 0px;
+    color: white;
+    border-left-color: rgb(255, 0, 0);
+}
+.project h4{
+    font-weight: 100;
+}
+.project:hover{
+    background-color: var(--hover-color);
+    /* color: var(); */
+    cursor: pointer;
+    transition: .5s ease;
+}
+.project-name{
+    color: rgb(255, 226, 97)
+}

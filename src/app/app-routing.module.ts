@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProjectListComponent } from './project/project-list/project-list.component';
-import { TaskListComponent } from './task/task-list/task-list.component';
-import { UserListComponent } from './user/user-list/user-list.component';
+import { ProjectPageComponent } from './project/project-page/project-page.component';
+import { TaskPageComponent } from './task/task-page/task-page.component';
+import { TeamPageComponent } from './team/team-page/team-page.component';
+import { UserPageComponent } from './user/user-page/user-page.component';
 
 const routes: Routes = [
-  {path: 'projects', component: ProjectListComponent},
-  {path: 'users', component: UserListComponent},
-  {path: 'tasks', component: TaskListComponent},
+  {path: 'projects', component: ProjectPageComponent},
+  {path: 'users', component: UserPageComponent},
+  {path: 'tasks', component: TaskPageComponent},
+  {path: 'teams', component: TeamPageComponent},
   { path: '**', redirectTo: 'projects' }
 ];
 
