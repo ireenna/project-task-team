@@ -4,6 +4,11 @@ import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectComponent } from './project/project.component';
 import { ProjectPageComponent } from './project-page/project-page.component';
 import { SharedModule } from '../shared/shared.module';
+import { ProjectCreateComponent } from './project-create/project-create.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ProjectService } from '../services/project.service';
+import { UserService } from '../services/user.service';
+import { CustomValidationService } from '../services/custom-validation.service';
 
 
 
@@ -11,7 +16,8 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     ProjectListComponent,
     ProjectComponent,
-    ProjectPageComponent
+    ProjectPageComponent,
+    ProjectCreateComponent
   ],
   imports: [
     CommonModule,
@@ -22,6 +28,8 @@ import { SharedModule } from '../shared/shared.module';
     ProjectListComponent,
     ProjectComponent
   ],
-  providers:[]
+  providers:[ProjectService,
+  UserService,
+CustomValidationService]
 })
 export class ProjectModule { }

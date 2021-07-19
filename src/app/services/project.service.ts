@@ -52,8 +52,8 @@ export class ProjectService {
             birthDay: new Date(1999,1,1)
           }]
         },
-        name: 'First project',
-        description: 'Jake Epping is a recently divorced high school English teacher in Lisbon Falls, Maine, earning extra money teaching a GED class.',
+        name: 'Such a nice big PROOOOOOOOJECTTTTTTTTTTTTTTTTTTTT',
+        description: 'Jake Epping is a recently divorced high schoollllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll English teacher in Lisbon Falls, Maine, earning extra money teaching a GED class. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
         deadline: new Date(2022, 11, 8),
         createdAt: new Date(2020,1,1),
         tasks:[{

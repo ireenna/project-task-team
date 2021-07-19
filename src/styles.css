@@ -4,9 +4,15 @@
     --color: #161b22;
     --text-color: #c9d1c9;
     --hover-color: #2a323b;
+    --red-color: rgb(253, 83, 83);
 }
 html{
     background-color: var(--background-color);
     padding-top: 80px;
     color:white;
+    margin: 10px;
 }
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

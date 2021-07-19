@@ -8,6 +8,8 @@ import { UserModule } from './user/user.module';
 import { NavigationMenuComponent } from './navigation-menu/navigation-menu.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,8 +23,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     UserModule,
     TaskModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
+  exports:[],
   providers: [],
   bootstrap: [AppComponent]
 })

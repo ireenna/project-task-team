@@ -3,13 +3,19 @@
     border-radius: 10px;
     border: 2px solid #30363d;
     height: auto;
-    padding: 1px 10px ;
+    padding: 10px 10px ;
     margin: 10px 0px;
     color: white;
-    border-left-color: rgb(255, 0, 0);
+    border-left-color: var(--red-color);
+    /* white-space: nowrap; */
+    max-width: inherit;
 }
-.project h4{
+.project-info > div{
     font-weight: 100;
+    margin: 5px 0;
+    /* text-overflow: ellipsis;
+    overflow:hidden;
+    max-width: 60%; */
 }
 .project:hover{
     background-color: var(--hover-color);
@@ -18,5 +24,30 @@
     transition: .5s ease;
 }
 .project-name{
-    color: rgb(255, 226, 97)
+    color: rgb(255, 226, 97);
+    margin: 12px 0;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    white-space: nowrap;
+}
+button{
+    border-radius: 10px;
+    background-color: var(--color);
+    color: white;
+    cursor: pointer;
+}
+.edit{
+    color: rgb(0, 255, 0);
+    border-color: rgb(0, 255, 0);
+}
+.delete{
+    color: var(--red-color);
+    border-color: var(--red-color);
+}
+button:hover{
+    background-color: var(--text-color);
+    transition: .3s ease-in;
+}
+.todo-buttons{
+    padding: 5px 0
 }

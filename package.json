@@ -10,11 +10,14 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~12.1.2",
+    "@angular/animations": "^12.1.2",
+    "@angular/cdk": "^12.1.2",
     "@angular/common": "~12.1.2",
     "@angular/compiler": "~12.1.2",
     "@angular/core": "~12.1.2",
     "@angular/forms": "~12.1.2",
+    "@angular/material": "^12.1.2",
+    "@angular/material-moment-adapter": "^12.1.2",
     "@angular/platform-browser": "~12.1.2",
     "@angular/platform-browser-dynamic": "~12.1.2",
     "@angular/router": "~12.1.2",
@@ -23,6 +26,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "@fortawesome/free-regular-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "mat-icon-import": "^0.1.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
