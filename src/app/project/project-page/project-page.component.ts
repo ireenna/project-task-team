@@ -66,7 +66,20 @@ export class ProjectPageComponent implements OnInit, CanComponentDeactivate {
       tasks:project.tasks
     };
     this.selectedProjectIndex = index;
-    console.log(this.selectedProject)
+  }
+  delete(index:number){
+    let project = this.projects[index];
+    this.projectService.deleteProject(project.id)
+    .subscribe(response => {
+      const deletedProject:Project = response;
+      if(response.id === project.id){
+        this.projects.splice(index, 1);
+        alert("The project was successfully deleted!")
+      }
+        
+  }, (error) => {
+      console.log(error)
+  });
   }
   displayCreateProject(){
     

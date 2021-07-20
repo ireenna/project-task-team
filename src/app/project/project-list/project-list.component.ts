@@ -13,11 +13,15 @@ export class ProjectListComponent implements OnInit {
   title = 'Projects:';
   @Input('projects') projectsList!: Project[];
   @Output() itemSelected =  new EventEmitter<number>();
+  @Output() itemSelectedToDelete =  new EventEmitter<number>();
 
   ngOnInit(): void {
   }
 
   projectSelected(index: number){
     this.itemSelected.emit(index);
+}
+projectSelectedToDelete(index: number){
+  this.itemSelectedToDelete.emit(index);
 }
 }

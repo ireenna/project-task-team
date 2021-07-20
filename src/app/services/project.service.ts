@@ -20,6 +20,9 @@ export class ProjectService {
   updateProject(newproj: ProjectCreate, id:number): Observable<Project>{
     return this.http.put<Project>('https://localhost:44326/api/Projects/'+id, newproj);
   }
+  deleteProject(id:number): Observable<Project>{
+    return this.http.delete<Project>('https://localhost:44326/api/Projects/'+id);
+  }
   // getProjects(): Project[] {
   //     return [{
   //       id: 1,

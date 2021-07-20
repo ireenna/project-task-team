@@ -9,7 +9,7 @@
 <!-- [project]="selectedProject"  (projectChange)="save($event)"-->
 </app-project-create>
 
-<app-project-list [projects]="projects" (itemSelected)="select($event)">
+<app-project-list [projects]="projects" (itemSelected)="select($event)" (itemSelectedToDelete)="delete($event)">
     <!--  -->
 </app-project-list>
 <div style="text-align: center;" *ngIf="projects.length == 0">

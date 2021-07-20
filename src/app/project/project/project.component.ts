@@ -10,6 +10,7 @@ export class ProjectComponent implements OnInit {
   @Input() item!: Project;
   @Input('index') itemIndex!: number;
   @Output() itemSelected =  new EventEmitter<number>();
+  @Output() itemSelectedToDelete =  new EventEmitter<number>();
   
   constructor() { }
 
@@ -17,6 +18,9 @@ export class ProjectComponent implements OnInit {
   }
   projectSelected(){
     this.itemSelected.emit(this.itemIndex);
+}
+projectSelectedToDelete(){
+  this.itemSelectedToDelete.emit(this.itemIndex);
 }
 
 }

@@ -1,4 +1,4 @@
 <div class="project-list">
-    <app-project *ngFor="let project of projectsList; let index = index" [item]="project" [index]='index' (itemSelected)="projectSelected($event)">
+    <app-project *ngFor="let project of projectsList; let index = index" [item]="project" [index]='index' (itemSelected)="projectSelected($event)" (itemSelectedToDelete)="projectSelectedToDelete($event)">
     </app-project>
 </div>

@@ -75,7 +75,7 @@ saveProject(){
   let newProject = this.registerForm.value;
   if(this.editModeItemId){
     this.projectService
-    .updateProject(newProject, this.editModeItemId).pipe()
+    .updateProject(newProject, this.editModeItemId)
     .subscribe(
       response=>{
         const createdProject:Project = response;
@@ -85,7 +85,7 @@ saveProject(){
     )
   }else{
     this.projectService
-  .createProject(newProject).pipe()
+  .createProject(newProject)
   .subscribe(
     response=>{
       const createdProject:Project = response;
