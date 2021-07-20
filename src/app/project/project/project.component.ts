@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Project } from 'src/app/models/project';
 
 @Component({
@@ -7,12 +7,16 @@ import { Project } from 'src/app/models/project';
   styleUrls: ['./project.component.css']
 })
 export class ProjectComponent implements OnInit {
-  @Input() item: Project | undefined;
-  @Input('index') itemIndex: number | undefined;
+  @Input() item!: Project;
+  @Input('index') itemIndex!: number;
+  @Output() itemSelected =  new EventEmitter<number>();
   
   constructor() { }
 
   ngOnInit(): void {
   }
+  projectSelected(){
+    this.itemSelected.emit(this.itemIndex);
+}
 
 }

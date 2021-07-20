@@ -1,4 +1,4 @@
-<div class="project">
+<div class="project" >
     <h1 class="project-name">
          {{item?.name}}
     </h1>
@@ -11,7 +11,7 @@
         <!-- <h4><b>Tasks: </b> {{item?.team.name}}</h4> -->
     </div>
     <div class="todo-buttons">
-        <button class="edit">edit</button>
+        <button class="edit" (click)="projectSelected()">edit</button>
         |
         <button class="delete">delete</button>
     </div>

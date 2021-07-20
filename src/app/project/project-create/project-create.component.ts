@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Validators, FormGroup, FormBuilder, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Observable, Subject } from 'rxjs';
@@ -16,13 +16,15 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './project-create.component.html',
   styleUrls: ['./project-create.component.css']
 })
-export class ProjectCreateComponent implements OnInit {
+export class ProjectCreateComponent implements OnInit, OnChanges {
   registerForm!: FormGroup;
   submitted = false;
   users$!: Observable<User[]>;
   teams$!: Observable<Team[]>;
+  editModeItemId:number|undefined = undefined;
   private searchTerms = new Subject<string>();
   private searchTermsTeam = new Subject<string>();
+  @Input() project: Project = {} as Project;
   @Output() projectChange = new EventEmitter<Project>();
   
   constructor(
@@ -45,7 +47,17 @@ export class ProjectCreateComponent implements OnInit {
   get registerFormControl() {
     return this.registerForm.controls;
   }
-  
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes)
+    if(changes.project && this.registerForm){
+        this.registerForm.get('name')?.setValue(changes.project.currentValue.name)
+        this.registerForm.get('description')?.setValue(changes.project.currentValue.description)
+        this.registerForm.get('authorId')?.setValue(changes.project.currentValue.authorId)
+        this.registerForm.get('teamId')?.setValue(changes.project.currentValue.teamId)
+        this.registerForm.get('deadline')?.setValue(changes.project.currentValue.deadline)
+        this.editModeItemId = changes.project.currentValue.id
+    }
+}
   ngOnInit() {
     this.users$ = this.searchTerms.pipe(
       distinctUntilChanged(),
@@ -61,7 +73,18 @@ saveProject(){
   this.submitted = true;
   console.log('Emit event');
   let newProject = this.registerForm.value;
-  this.projectService
+  if(this.editModeItemId){
+    this.projectService
+    .updateProject(newProject, this.editModeItemId).pipe()
+    .subscribe(
+      response=>{
+        const createdProject:Project = response;
+        this.projectChange.emit(createdProject);
+        alert("The project was successfully updated!");
+      }
+    )
+  }else{
+    this.projectService
   .createProject(newProject).pipe()
   .subscribe(
     response=>{
@@ -70,10 +93,9 @@ saveProject(){
       alert("The project was successfully created!");
     }
   )
-  //send post
-  
-  
 }
+  }
+  
 // Push a search term into the observable stream.
 search(term: string): void {
   this.searchTerms.next(term);

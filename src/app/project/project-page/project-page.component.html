@@ -5,11 +5,11 @@
 </button> -->
 <button class="create-button" (click)="displayCreateProject()">Create</button>
 
-<app-project-create *ngIf="!hideCreateProject" >
+<app-project-create *ngIf="!hideCreateProject" [project]="selectedProject" (projectChange)="save($event)">
 <!-- [project]="selectedProject"  (projectChange)="save($event)"-->
 </app-project-create>
 
-<app-project-list [projects]="projects">
+<app-project-list [projects]="projects" (itemSelected)="select($event)">
     <!--  -->
 </app-project-list>
 <div style="text-align: center;" *ngIf="projects.length == 0">
