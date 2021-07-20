@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/models/project';
 import { ProjectService } from 'src/app/services/project.service';
 import { map } from 'rxjs/operators';
+import { CanComponentDeactivate } from 'src/app/shared/can-deactivate-create.guard';
+import { Observable } from 'rxjs';
+import { UrlTree } from '@angular/router';
 
 @Component({
   selector: 'app-project-page',
@@ -9,12 +12,13 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./project-page.component.css'],
   providers:[ProjectService]
 })
-export class ProjectPageComponent implements OnInit {
+export class ProjectPageComponent implements OnInit, CanComponentDeactivate {
   
   projects: Project[] = [];
   selectedProject: Project = {} as Project;
   selectedProjectIndex: number = -1;
   hideCreateProject: Boolean = true;
+  saved:Boolean = true;
 
   constructor(private projectService: ProjectService) { }
 
@@ -36,6 +40,17 @@ export class ProjectPageComponent implements OnInit {
   this.projects = this.projectService.getProjects();
   }
 
+
+  canDeactivate() : Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree{
+     
+    if(!this.saved){
+        return confirm("You may have some unsaved data. Do you want to leave the page?");
+    }
+    else{
+        return true;
+    }
+}
+
     save(newProject: Project){
       if(this.selectedProjectIndex === -1){
           this.projects.push(newProject);
@@ -43,6 +58,7 @@ export class ProjectPageComponent implements OnInit {
           this.projects[this.selectedProjectIndex] = newProject;
       }
       this.selectedProjectIndex = -1;
+      this.saved = true;
   }
   select(event: Event) {
     console.log(event)
@@ -64,6 +80,12 @@ export class ProjectPageComponent implements OnInit {
     // console.log(this.selectedProject)
   }
   displayCreateProject(){
+    
     this.hideCreateProject = !this.hideCreateProject;
+    if(!this.hideCreateProject){
+      this.saved = false;
+    }else{
+      this.saved = true;
+    }
   }
 }

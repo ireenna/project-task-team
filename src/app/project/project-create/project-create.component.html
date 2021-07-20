@@ -1,26 +1,12 @@
-<!-- <mat-form-field appearance="fill">
-  <mat-label>Input</mat-label>
-  <input matInput>
-</mat-form-field>
-<mat-form-field appearance="fill">
-  <mat-label>Select</mat-label>
-  <mat-select>
-    <mat-option value="one">First option</mat-option>
-    <mat-option value="two">Second option</mat-option>
-  </mat-select>
-</mat-form-field>
-<mat-form-field appearance="fill">
-  <mat-label>Textarea</mat-label>
-  <textarea matInput></textarea>
-</mat-form-field> -->
- 
-<form class="example-form" [formGroup]="registerForm">
+<form class="example-form" [formGroup]="registerForm" (ngSubmit)="saveProject()">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label >Name</mat-label>
       <input type="name" autocomplete="off" matInput formControlName="name">
-      <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
       <mat-error *ngIf="(registerFormControl.name.touched || submitted) && registerFormControl.name.errors?.maxlength">
         Name should be less than 20 characters
+      </mat-error>
+      <mat-error *ngIf="(registerFormControl.name.touched || submitted) && registerFormControl.name.errors?.minlength">
+        Name should have 2 or more characters
       </mat-error>
       <mat-error *ngIf="registerFormControl.name.errors?.required">
         Name is <strong>required</strong>
@@ -34,47 +20,48 @@
      <mat-form-field class="example-full-width" appearance="fill">
         <input formControlName="authorId" matInput autocomplete="off" #searchBox type="text" class="form-control" id="search-box" (input)="search(searchBox.value)" />
         <mat-label for="search-box">Author</mat-label>
-
         <input type="authorId" matInput formControlName="authorId" class="search-result dropdown-content">
             <mat-option *ngFor="let user of users$ | async" (click)="chooseAuthor(user)">
                 {{user.id}}. {{user.firstName}} {{user.lastName}}
             </mat-option>
+        <mat-hint>Type here an id or search by name</mat-hint>
         <mat-error *ngIf="(registerFormControl.authorId.touched || submitted) && registerFormControl.authorId.errors?.required">
             Author is required
         </mat-error>
         <mat-error *ngIf="registerFormControl.authorId.touched && registerFormControl.authorId.errors?.authorNotAvailable">
             Author is not available
         </mat-error>
-        <span class="text-correct"
-            *ngIf="registerFormControl.authorId.touched && registerFormControl.authorId.errors === null">
-            Author is correct!
-        </span>
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Deadline</mat-label>
         <input matInput [matDatepicker]="dp3" autocomplete="off" formControlName="deadline">
         <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
         <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+        <mat-error *ngIf="(registerFormControl.deadline.touched || submitted) && registerFormControl.deadline.errors?.required">
+          Deadline is required
+      </mat-error>
+      <mat-error *ngIf="registerFormControl.deadline.touched && registerFormControl.deadline.errors?.deadlineNotAvailable">
+        Deadline should be later than today.
+    </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width" appearance="fill">
-        <input formControlName="teamId" matInput autocomplete="off" #searchBox type="text" class="form-control" id="search-box" (input)="searchTeam(searchBox.value)" />
+        <input formControlName="teamId" matInput autocomplete="off" #teamBox type="text" class="form-control" id="search-box" (input)="searchTeam(teamBox.value)" />
         <mat-label for="search-box">Team</mat-label>
-
-        <input type="teamId" matInput formControlName="teamId" >
-            <mat-option *ngFor="let team of teams$ | async" (click)="chooseTeam(team)">
+        <input type="text" matInput formControlName="teamId" placeholder="Click here to search." [matAutocomplete]="auto">
+         <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let team of teams$ | async" [value]="team.id">
                 {{team.id}}. {{team.name}}
             </mat-option>
+          </mat-autocomplete>
+        <mat-hint>Type here an id or search by name</mat-hint>
         <mat-error *ngIf="(registerFormControl.teamId.touched || submitted) && registerFormControl.teamId.errors?.required">
             Team is required
         </mat-error>
-        <mat-error *ngIf="registerFormControl.teamId.touched && registerFormControl.teamId.errors?.authorNotAvailable">
+        <mat-error *ngIf="registerFormControl.teamId.touched && registerFormControl.teamId.errors?.teamNotAvailable">
             Team is not available
         </mat-error>
-        <span class="text-correct"
-            *ngIf="registerFormControl.teamId.touched && registerFormControl.teamId.errors === null">
-            Team is correct!
-        </span>
     </mat-form-field>
+    <button class="btn btn-submit" type="submit" [disabled]="registerForm.invalid">submit</button>
   </form> 
 
 

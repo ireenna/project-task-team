@@ -9,6 +9,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ProjectService } from '../services/project.service';
 import { UserService } from '../services/user.service';
 import { CustomValidationService } from '../services/custom-validation.service';
+import { CanDeactivateCreateGuard } from '../shared/can-deactivate-create.guard';
 
 
 
@@ -28,8 +29,10 @@ import { CustomValidationService } from '../services/custom-validation.service';
     ProjectListComponent,
     ProjectComponent
   ],
-  providers:[ProjectService,
+  providers:[
+    ProjectService,
   UserService,
-CustomValidationService]
+CustomValidationService,
+CanDeactivateCreateGuard]
 })
 export class ProjectModule { }

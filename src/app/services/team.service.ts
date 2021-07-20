@@ -12,7 +12,7 @@ export class TeamService {
   constructor(private http: HttpClient) { }
 
   searchTeams(term: string): Observable<Team[]> {
-    if (!term.trim()) {
+    if (!term.trim) {
       return of([]);
     }
     return this.getTeams().pipe(
@@ -20,6 +20,6 @@ export class TeamService {
     );
   }
   getTeams():Observable<Team[]>{
-    return this.http.get<Team[]>('https://localhost:44326/api/Users');
+    return this.http.get<Team[]>('https://localhost:44326/api/teams');
   }
 }

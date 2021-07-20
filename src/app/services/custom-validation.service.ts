@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { filter, map } from 'rxjs/operators';
 import { UserService } from './user.service';
+import { Team } from '../models/team';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import { UserService } from './user.service';
 export class CustomValidationService {
   
   allUsers:User[]=[];
+  allTeams:Team[]=[];
 
   constructor(private http: HttpClient, private userService:UserService) {
     this.userService.getUsers().pipe(map(x => {
@@ -31,13 +33,25 @@ deadlineValidator(dateControl: AbstractControl) {
       if (new Date(dateControl.value) > new Date()) {
         resolve(null);
       } else {
-        console.log(dateControl.value)
-        console.log(dateControl)
-        console.log(dateControl.value as Date)
         resolve({ deadlineNotAvailable: true });
       }
     }, 1000);
   });
+}
+teamValidator(teamControl: AbstractControl) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      if (this.validateAuthor(teamControl.value)) {
+        resolve(null);
+      } else {
+        resolve({ teamNotAvailable: true });
+      }
+    }, 1000);
+  });
+}
+
+validateTeam(teamId: string) {
+  return this.allTeams.find(x=>x.id === Number.parseInt(teamId));
 }
 
   authorValidator(userControl: AbstractControl) {
