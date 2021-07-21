@@ -1,16 +1,9 @@
-<!-- <button class="btn btn-submit" (click)="showEdit()" style="margin-bottom: 1em;">
-	<span [hidden]="!hideCreateBook"> Show </span>
-	<span [hidden]="hideCreateBook"> Hide </span>
-	edit
-</button> -->
 <button class="create-button" (click)="displayCreateProject()">Create</button>
 
 <app-project-create *ngIf="!hideCreateProject" [project]="selectedProject" (projectChange)="save($event)">
-<!-- [project]="selectedProject"  (projectChange)="save($event)"-->
 </app-project-create>
 
 <app-project-list [projects]="projects" (itemSelected)="select($event)" (itemSelectedToDelete)="delete($event)">
-    <!--  -->
 </app-project-list>
 <div style="text-align: center;" *ngIf="projects.length == 0">
     There is nothing.

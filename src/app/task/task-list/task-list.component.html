@@ -1,1 +1,4 @@
-<p>task-list works!</p>
+<div class="project-list">
+    <app-task *ngFor="let task of tasksList; let index = index" [item]="task" [index]='index' (itemSelected)="tasksSelected($event)" (itemSelectedToDelete)="tasksSelectedToDelete($event)">
+    </app-task>
+</div>

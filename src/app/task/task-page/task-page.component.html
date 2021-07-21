@@ -1,2 +1,10 @@
-<app-task-list>
+<button class="create-button" (click)="displayCreateProject()">Create</button>
+
+<app-task-create *ngIf="!hideCreateProject" [tasks]="selectedProject" (tasksChange)="save($event)">
+</app-task-create>
+
+<app-task-list [tasks]="tasks" (itemSelected)="select($event)" (itemSelectedToDelete)="delete($event)">
 </app-task-list>
+<div style="text-align: center;" *ngIf="tasks.length == 0">
+    There is nothing.
+</div>

@@ -54,7 +54,7 @@ export class ProjectPageComponent implements OnInit, CanComponentDeactivate {
     this.displayCreateProject();
     let project = this.projects[index];
     this.selectedProject = {
-      id: project.authorId,
+      id: project.id,
       author: project.author,
       authorId: project.authorId,
       teamId: project.teamId,

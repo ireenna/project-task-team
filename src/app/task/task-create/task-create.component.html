@@ -1,0 +1,62 @@
+<form class="example-form" [formGroup]="registerForm" (ngSubmit)="saveProject()">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label >Name</mat-label>
+      <input type="name" autocomplete="off" matInput formControlName="name">
+      <mat-error *ngIf="(registerFormControl.name.touched || submitted) && registerFormControl.name.errors?.maxlength">
+        Name should be less than 20 characters
+      </mat-error>
+      <mat-error *ngIf="(registerFormControl.name.touched || submitted) && registerFormControl.name.errors?.minlength">
+        Name should have 2 or more characters
+      </mat-error>
+      <mat-error *ngIf="registerFormControl.name.errors?.required">
+        Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label >Description</mat-label>
+        <textarea type="description" autocomplete="off" matInput formControlName="description"></textarea>
+        <mat-hint>Task description isn't obligatory</mat-hint>
+    </mat-form-field>
+     <mat-form-field class="example-full-width" appearance="fill">
+        <input formControlName="performerId" matInput autocomplete="off" #searchBox type="text" class="form-control" id="search-box" (input)="search(searchBox.value)" />
+        <mat-label for="search-box">Performer</mat-label>
+        <input type="performerId" matInput formControlName="performerId">
+            <mat-option *ngFor="let user of users$ | async" (click)="choosePerformer(user)">
+                {{user.id}}. {{user.firstName}} {{user.lastName}}
+            </mat-option>
+        <mat-hint>Type here an id or search by name</mat-hint>
+        <mat-error *ngIf="(registerFormControl.performerId.touched || submitted) && registerFormControl.performerId.errors?.required">
+            Performer is required
+        </mat-error>
+        <mat-error *ngIf="registerFormControl.performerId.touched && registerFormControl.performerId.errors?.authorNotAvailable">
+            Performer is not available
+        </mat-error>
+    </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <input formControlName="projectId" matInput autocomplete="off" #teamBox type="text" class="form-control" id="search-box" (input)="searchProject(teamBox.value)" />
+        <mat-label for="search-box">Project</mat-label>
+        <input type="text" matInput formControlName="projectId" placeholder="Click here to search." [matAutocomplete]="auto">
+         <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let project of projects$ | async" [value]="project.id">
+                {{project.id}}. {{project.name}}
+            </mat-option>
+          </mat-autocomplete>
+        <mat-hint>Type here an id or search by name</mat-hint>
+        <mat-error *ngIf="(registerFormControl.projectId.touched || submitted) && registerFormControl.projectId.errors?.required">
+            Project is required
+        </mat-error>
+        <mat-error *ngIf="registerFormControl.projectId.touched && registerFormControl.projectId.errors?.projectNotAvailable">
+            Project is not available
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+    <mat-label>State</mat-label>
+    <select matNativeControl required formControlName="state">
+        <option value=0>ToDo</option>
+        <option value=1>InProgress</option>
+        <option value=2>Done</option>
+        <option value=3>Canceled</option>
+    </select>
+    </mat-form-field>
+    <button class="btn btn-submit" type="submit" [disabled]="registerForm.invalid">submit</button>
+  </form> 

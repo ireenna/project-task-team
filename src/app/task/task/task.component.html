@@ -1,1 +1,31 @@
-<p>task works!</p>
+<div class="item" >
+    <h1 class="item-name">
+         {{item?.name}}
+    </h1>
+    <div class="item-info">
+        <div><strong>Description: </strong>{{item?.description}}</div>
+        <div><b>Performer: </b> {{item?.performer?.firstName}} {{item?.performer?.lastName}}</div>
+        <div><b>ProjectId: </b> {{item?.projectId}}</div>
+        <div><b>Created at: </b> {{item?.createdAt| myDateFormat}} </div>
+        <div><b >FinishedAt: </b> {{item?.finishedAt|myDateFormat}}</div>
+        <div [ngSwitch]="item?.state">
+            <div *ngSwitchCase="0" appYellowColor>
+                ToDo
+            </div>
+            <div *ngSwitchCase="1" appOrangeColor>
+                InProgress
+            </div>
+            <div *ngSwitchCase="2" appGreenColor>
+                Done
+            </div>
+            <div *ngSwitchCase="3" appRedColor>
+                Canceled
+            </div>
+        </div>
+    </div>
+    <div class="todo-buttons">
+        <button class="edit" (click)="projectSelected()">edit</button>
+        |
+        <button class="delete" (click)="projectSelectedToDelete()">delete</button>
+    </div>
+</div>

@@ -9,7 +9,7 @@ import { UserPageComponent } from './user/user-page/user-page.component';
 const routes: Routes = [
   {path: 'projects', component: ProjectPageComponent, canDeactivate: [CanDeactivateCreateGuard]},
   {path: 'users', component: UserPageComponent},
-  {path: 'tasks', component: TaskPageComponent},
+  {path: 'tasks', component: TaskPageComponent,canDeactivate: [CanDeactivateCreateGuard]},
   {path: 'teams', component: TeamPageComponent},
   { path: '**', redirectTo: 'projects' }
 ];
