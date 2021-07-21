@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: 'projects', component: ProjectPageComponent, canDeactivate: [CanDeactivateCreateGuard]},
   {path: 'users', component: UserPageComponent},
   {path: 'tasks', component: TaskPageComponent,canDeactivate: [CanDeactivateCreateGuard]},
-  {path: 'teams', component: TeamPageComponent},
+  {path: 'teams', component: TeamPageComponent,canDeactivate: [CanDeactivateCreateGuard]},
   { path: '**', redirectTo: 'projects' }
 ];
 

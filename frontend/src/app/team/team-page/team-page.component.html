@@ -1,1 +1,10 @@
-<p>team-page works!</p>
+<button class="create-button" (click)="displayCreateProject()">Create</button>
+
+<app-team-create *ngIf="!hideCreateProject" [team]="selectedProject" (teamChange)="save($event)">
+</app-team-create>
+
+<app-team-list [teams]="teams" (itemSelected)="select($event)" (itemSelectedToDelete)="delete($event)">
+</app-team-list>
+<div style="text-align: center;" *ngIf="teams.length == 0">
+    There is nothing.
+</div>

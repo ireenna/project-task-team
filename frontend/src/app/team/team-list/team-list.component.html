@@ -1,1 +1,4 @@
-<p>team-list works!</p>
+<div class="project-list">
+    <app-team *ngFor="let team of teamList; let index = index" [item]="team" [index]='index' (itemSelected)="teamsSelected($event)" (itemSelectedToDelete)="teamsSelectedToDelete($event)">
+    </app-team>
+</div>

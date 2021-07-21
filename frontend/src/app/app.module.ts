@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TeamModule } from './team/team.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProjectModule,
     UserModule,
     TaskModule,
+    TeamModule,
     HttpClientModule,
     FontAwesomeModule,
     ReactiveFormsModule,

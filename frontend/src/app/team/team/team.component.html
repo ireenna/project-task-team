@@ -1,1 +1,13 @@
-<p>team works!</p>
+<div class="item" >
+    <h1 class="item-name">
+         {{item?.name}}
+    </h1>
+    <div class="item-info">
+        <div><b>Created at: </b> {{item?.createdAt| myDateFormat}} </div>
+    </div>
+    <div class="todo-buttons">
+        <button class="edit" (click)="teamSelected()">edit</button>
+        |
+        <button class="delete" (click)="teamSelectedToDelete()">delete</button>
+    </div>
+</div>

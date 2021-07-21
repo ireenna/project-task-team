@@ -1,0 +1,16 @@
+<form class="example-form" [formGroup]="registerForm" (ngSubmit)="saveProject()">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label >Name</mat-label>
+      <input type="name" autocomplete="off" matInput formControlName="name">
+      <mat-error *ngIf="(registerFormControl.name.touched || submitted) && registerFormControl.name.errors?.maxlength">
+        Name should be less than 20 characters
+      </mat-error>
+      <mat-error *ngIf="(registerFormControl.name.touched || submitted) && registerFormControl.name.errors?.minlength">
+        Name should have 2 or more characters
+      </mat-error>
+      <mat-error *ngIf="registerFormControl.name.errors?.required">
+        Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <button class="btn btn-submit" type="submit" [disabled]="registerForm.invalid">submit</button>
+  </form> 
