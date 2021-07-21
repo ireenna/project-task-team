@@ -63,6 +63,17 @@ deadlineValidator(dateControl: AbstractControl) {
     }, 1000);
   });
 }
+birthdayValidator(dateControl: AbstractControl) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      if (new Date(dateControl.value) < new Date()) {
+        resolve(null);
+      } else {
+        resolve({ birthdayNotAvailable: true });
+      }
+    }, 1000);
+  });
+}
 teamValidator(teamControl: AbstractControl) {
   return new Promise(resolve => {
     setTimeout(() => {

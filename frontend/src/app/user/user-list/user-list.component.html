@@ -1,1 +1,4 @@
-<p>user-list works!</p>
+<div class="project-list">
+    <app-user *ngFor="let user of userList; let index = index" [item]="user" [index]='index' (itemSelected)="userSelected($event)" (itemSelectedToDelete)="userSelectedToDelete($event)">
+    </app-user>
+</div>

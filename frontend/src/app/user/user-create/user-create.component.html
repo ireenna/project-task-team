@@ -1,0 +1,65 @@
+<form class="example-form" [formGroup]="registerForm" (ngSubmit)="saveProject()">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label >First name</mat-label>
+      <input type="firstName" autocomplete="off" matInput formControlName="firstName">
+      <mat-error *ngIf="(registerFormControl.firstName.touched || submitted) && registerFormControl.firstName.errors?.maxlength">
+        First name should be less than 20 characters
+      </mat-error>
+      <mat-error *ngIf="(registerFormControl.firstName.touched || submitted) && registerFormControl.firstName.errors?.minlength">
+        First name should have 2 or more characters
+      </mat-error>
+      <mat-error *ngIf="registerFormControl.firstName.errors?.required">
+        First name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label >Last name</mat-label>
+        <input type="lastName" autocomplete="off" matInput formControlName="lastName">
+        <mat-error *ngIf="(registerFormControl.lastName.touched || submitted) && registerFormControl.lastName.errors?.maxlength">
+          Last name should be less than 20 characters
+        </mat-error>
+        <mat-error *ngIf="(registerFormControl.lastName.touched || submitted) && registerFormControl.lastName.errors?.minlength">
+          Last name should have 2 or more characters
+        </mat-error>
+        <mat-error *ngIf="registerFormControl.lastName.errors?.required">
+          Last name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label >Email</mat-label>
+        <input type="email" autocomplete="off" matInput formControlName="email">
+        <mat-error *ngIf="registerFormControl.email.errors?.required">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <input formControlName="teamId" matInput autocomplete="off" #teamBox type="text" class="form-control" id="search-box" (input)="searchTeam(teamBox.value)" />
+        <mat-label for="search-box">Team</mat-label>
+        <input type="text" matInput formControlName="teamId" placeholder="Click here to search." [matAutocomplete]="auto">
+         <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let team of teams$ | async" [value]="team.id">
+                {{team.id}}. {{team.name}}
+            </mat-option>
+          </mat-autocomplete>
+        <mat-hint>Type here an id or search by name</mat-hint>
+        <mat-error *ngIf="(registerFormControl.teamId.touched || submitted) && registerFormControl.teamId.errors?.required">
+            Team is required
+        </mat-error>
+        <mat-error *ngIf="registerFormControl.teamId.touched && registerFormControl.teamId.errors?.teamNotAvailable">
+            Team is not available
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Birthday</mat-label>
+        <input matInput [matDatepicker]="dp3" autocomplete="off" formControlName="birthDay">
+        <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+        <mat-error *ngIf="(registerFormControl.birthDay.touched || submitted) && registerFormControl.birthDay.errors?.required">
+          Birthday is required
+      </mat-error>
+      <mat-error *ngIf="registerFormControl.birthDay.touched && registerFormControl.birthDay.errors?.birthdayNotAvailable">
+        Birthday should be earlier than today.
+    </mat-error>
+      </mat-form-field>
+    <button class="btn btn-submit" type="submit" [disabled]="registerForm.invalid">submit</button>
+  </form> 

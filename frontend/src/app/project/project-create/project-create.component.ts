@@ -96,12 +96,10 @@ saveProject(){
 }
   }
   
-// Push a search term into the observable stream.
 search(term: string): void {
   this.searchTerms.next(term);
 }
 searchTeam(term: string): void {
-  console.log(term)
   this.searchTermsTeam.next(term);
 }
  chooseAuthor(user:User){

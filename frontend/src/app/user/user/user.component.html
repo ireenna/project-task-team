@@ -1,1 +1,16 @@
-<p>user works!</p>
+<div class="item" >
+    <h1 class="item-name">
+         {{item?.firstName}} {{item?.lastName}}
+    </h1>
+    <div class="item-info">
+        <div><b>Email: </b> {{item?.email}}</div>
+        <div><b>ProjectId: </b> {{item?.teamId}}</div>
+        <div><b>Registered at: </b> {{item?.registeredAt| myDateFormat}} </div>
+        <div><b>B-day: </b> {{item?.birthDay|myDateFormat}}</div>
+    </div>
+    <div class="todo-buttons">
+        <button class="edit" (click)="userSelected()">edit</button>
+        |
+        <button class="delete" (click)="userSelectedToDelete()">delete</button>
+    </div>
+</div>

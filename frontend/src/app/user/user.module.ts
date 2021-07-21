@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserComponent } from './user/user.component';
 import { UserPageComponent } from './user-page/user-page.component';
+import { UserCreateComponent } from './user-create/user-create.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -10,10 +12,12 @@ import { UserPageComponent } from './user-page/user-page.component';
   declarations: [
     UserListComponent,
     UserComponent,
-    UserPageComponent
+    UserPageComponent,
+    UserCreateComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ]
 })
 export class UserModule { }
